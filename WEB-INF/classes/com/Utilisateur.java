@@ -9,8 +9,8 @@ public class Utilisateur {
 		this.email = email;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motdepasse = motDePasse;
+	public void setMotDePasse(String motDePassage) {
+		this.motdepasse = motDePassage;
 	}
 	
 	public String getEmail(){
