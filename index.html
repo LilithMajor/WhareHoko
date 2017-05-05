@@ -1,17 +1,28 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Sample "Hello, World" Application</title>
-  </head>
-  <body bgcolor=white>
+    <head>
+        <meta charset="utf-8" />
+        <title>Connexion</title>
+        <link type="text/css" rel="stylesheet" href="form.css" />
+    </head>
+    <body>
+        <form method="post" action="connexion">
+            <fieldset>
+                <legend>Connexion</legend>
+                <p>Vous pouvez vous connecter via ce formulaire.</p>
 
-    <p>This is the home page for the HelloWorld Web application. </p>
-    <p>To prove that they work, you can enter your name here :
+                <label for="nom">Adresse email <span class="requis">*</span></label>
+                <input type="email" id="email" name="email" value="" size="20" maxlength="60" />
+                <br />
 
+                <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
+                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
+                <br />
 
-	<form method = "get" action = "affiche">
-			<div id = "nom"><input type = "text" name = "nom" placeholder = "Votre Nom"/></div>
-			<input type= "submit" value = "Go !"/>
-	</form>
-	
-  </body>
+                <input type="submit" value="Connexion" class="sansLabel" />
+                <br />
+                
+            </fieldset>
+        </form>
+    </body>
 </html>

@@ -5,16 +5,6 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 	
-	<servlet> 
-		<servlet-name>myservlet</servlet-name>
-		<servlet-class>TestServlet</servlet-class>       
-	</servlet>
-	
-	<servlet-mapping> 
-		<servlet-name>myservlet</servlet-name>
-		<url-pattern>/affiche</url-pattern>
-	</servlet-mapping>	
-	
 	<servlet>
 		<servlet-name>connexion</servlet-name>
 		<servlet-class>Connexion</servlet-class>
