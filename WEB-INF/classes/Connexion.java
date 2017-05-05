@@ -19,17 +19,7 @@ public class Connexion extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
     public static final String VUE              = "/WEB-INF/connexion.html";
 
-    public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        /* Affichage de la page de connexion */
-        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-    }
-
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-    	Locale localeFR = new Locale("FR","fr");
-        Calendar calendrier = Calendar.getInstance(localeFR );
-        DateFormat format = DateFormat.getDateTimeInstance();
-        format.setCalendar(calendrier);
-        String date = format.format(calendrier.getTime()).toString();
         
         /* Préparation de l'objet formulaire */
         ConnexionForm form = new ConnexionForm();
@@ -45,9 +35,7 @@ public class Connexion extends HttpServlet {
          * Utilisateur à la session, sinon suppression du bean de la session.
          */
             session.setAttribute( ATT_SESSION_USER, utilisateur );
-            session.setAttribute("date", date);
-            System.out.println(request);
-            System.out.println(response);
+            
         this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
     }
 }
