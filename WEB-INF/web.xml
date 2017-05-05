@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <web-app> 
-
-	<welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-	
 	<servlet>
 		<servlet-name>connexion</servlet-name>
 		<servlet-class>Connexion</servlet-class>

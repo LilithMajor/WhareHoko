@@ -1,5 +1,10 @@
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,37 +14,28 @@ import com.Utilisateur;
 
 
 public final class ConnexionForm {
-    private static final String CHAMP_EMAIL  = "email";
+    private static final String CHAMP_LOGIN  = "login";
     private static final String CHAMP_PASS   = "motdepasse";
 
-    private String              resultat;
-    private Map<String, String> erreurs      = new HashMap<String, String>();
-
-    public String getResultat() {
-        return resultat;
-    }
-
-    public Map<String, String> getErreurs() {
-        return erreurs;
-    }
-
-    public Utilisateur connecterUtilisateur( HttpServletRequest request ) {
-        /* Récupération des champs du formulaire */
-        String email = getValeurChamp( request, CHAMP_EMAIL );
+    public String connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+    	Statement statement = connect.createStatement();
+        String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
+    	ResultSet result = statement.executeQuery("SELECT login FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
+    	if(!result.next()){
+    		throw new NullPointerException();
+    	}
+		while(result.next()){
+			login = result.getString(1);
+		}
+        /* Récupération des champs du formulaire */
 
-        Utilisateur utilisateur = new Utilisateur();
-
-        /* Validation du champ email. */
-        utilisateur.setEmail( email );
-
-        /* Validation du champ mot de passe. */
-    
-        utilisateur.setMotDePasse( motDePasse );
 
         /* Initialisation du résultat global de la validation. */
-
-        return utilisateur;
+        
+        return login;
     }
 
     /**
