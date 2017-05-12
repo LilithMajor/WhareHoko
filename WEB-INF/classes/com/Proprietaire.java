@@ -1,10 +1,13 @@
 package com;
 
-public class Utilisateur {
+public class Proprietaire {
 	private String nom;
 	private String login;
 	private String email;
 	private String motdepasse;
+	
+	public Proprietaire() {
+	}
 	
 	public String getNom() {
 		return nom;
@@ -27,6 +30,12 @@ public class Utilisateur {
 	public String getMotdepasse() {
 		return motdepasse;
 	}
+	@Override
+	public String toString() {
+		return "Proprietaire [nom=" + nom + ", login=" + login + ", email=" + email + ", motdepasse=" + motdepasse
+				+ "]";
+	}
+
 	public void setMotdepasse(String motdepasse) {
 		this.motdepasse = motdepasse;
 	}

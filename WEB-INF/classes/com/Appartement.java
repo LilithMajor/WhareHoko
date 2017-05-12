@@ -9,6 +9,9 @@ public class Appartement {
 	private int montantVente;
 	private Date DatePublication;
 	
+	public Appartement() {
+	}
+	
 	public int getNum() {
 		return num;
 	}

@@ -11,7 +11,7 @@ import java.util.Map;
 import javax.management.BadAttributeValueExpException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.Utilisateur;
+import com.Proprietaire;
 
 
 public final class RequetesBDD {
@@ -21,20 +21,25 @@ public final class RequetesBDD {
     private static final String CHAMP_EMAIL   = "email";
 
 
-    public String connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
+    public Proprietaire connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
 		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
-    	ResultSet result = statement.executeQuery("SELECT login FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
+        Proprietaire prop = new Proprietaire();
+    	ResultSet result = statement.executeQuery("SELECT * FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
     	if(!result.next()){
     		throw new NullPointerException();
     	}
 		while(result.next()){
-			login = result.getString(1);
+			prop.setLogin(result.getString(1));
+			prop.setNom(result.getString(2));
+			prop.setMotdepasse(result.getString(3));
+			prop.setEmail(result.getString(4));
 		}       
-        return login;
+		System.out.println(prop);
+        return prop;
     }
     
     public void enregistrerUtilisateur(HttpServletRequest request)throws ClassNotFoundException, SQLException {

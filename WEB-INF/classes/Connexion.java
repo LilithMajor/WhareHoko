@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.Utilisateur;
+import com.Proprietaire;
 
 public class Connexion extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
@@ -26,9 +26,9 @@ public class Connexion extends HttpServlet {
         String parent = "connexion";
         
         /* Traitement de la requête et récupération du bean en résultant */
-        String login = null;
+        Proprietaire prop = new Proprietaire();
 		try {
-			login = form.connecterUtilisateur( request );
+			prop = form.connecterUtilisateur( request );
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
@@ -36,7 +36,7 @@ public class Connexion extends HttpServlet {
 		} catch (NullPointerException e){
 			erreur = true;
 			request.setAttribute("erreur", erreur);
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+			this.getServletContext().getRequestDispatcher("/connexion.jsp").forward( request, response );
 		}
 
         /* Récupération de la session depuis la requête */
@@ -47,7 +47,7 @@ public class Connexion extends HttpServlet {
          * Utilisateur à la session, sinon suppression du bean de la session.
          */
 		if(!erreur){
-			session.setAttribute( ATT_SESSION_USER, login );
+			session.setAttribute( ATT_SESSION_USER, prop );
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);
 	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );

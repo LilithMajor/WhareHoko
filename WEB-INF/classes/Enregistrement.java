@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.Utilisateur;
+import com.Proprietaire;
 
 public class Enregistrement extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
