@@ -11,6 +11,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>enregistrement</servlet-name>
+		<servlet-class>Enregistrement</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>enregistrement</servlet-name>
+		<url-pattern>/enregistrement</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Deconnexion</servlet-name>
 		<servlet-class>Déconnexion</servlet-class>
 	</servlet>

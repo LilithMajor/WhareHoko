@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.Utilisateur;
 
-public class Connexion extends HttpServlet {
+public class Enregistrement extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class Connexion extends HttpServlet {
         /* Traitement de la requête et récupération du bean en résultant */
         String login = null;
 		try {
-			login = form.connecterUtilisateur( request );
+			form.enregistrerUtilisateur( request );
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
@@ -47,7 +47,6 @@ public class Connexion extends HttpServlet {
          */
 		if(!erreur){
 			session.setAttribute( ATT_SESSION_USER, login );
-			request.setAttribute("erreur", erreur);
 	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
 		}
     }
