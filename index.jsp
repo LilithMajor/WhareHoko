@@ -10,9 +10,15 @@
             <fieldset>
                 <legend>Enregistrement</legend>
                 <p>Vous pouvez vous enregister via ce formulaire.</p>
-				<% boolean erreur = request.getAttribute("erreur");%>
+				<% Boolean erreur = null;
+				if(request.getAttribute("erreur") == null){
+					 erreur = false;
+				}
+				else{
+					 erreur = (Boolean) request.getAttribute("erreur");
+				}%>
                 <label for="nom">Nom<span class="requis">*</span></label>
-                <input type="text" id="name" name="name" value="" size="20" maxlength="60" />
+                <input type="text" id="name" name="nom" value="" size="20" maxlength="60" />
                 <br />
 				
 				<label for="login" <% if(erreur){%>style="color:red"<%}%>>Login<span class="requis">*</span></label>

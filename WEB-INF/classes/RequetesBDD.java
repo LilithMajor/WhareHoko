@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.Utilisateur;
 
 
-public final class ConnexionForm {
+public final class RequetesBDD {
     private static final String CHAMP_LOGIN  = "login";
     private static final String CHAMP_PASS   = "motdepasse";
     private static final String CHAMP_NAME   = "nom";

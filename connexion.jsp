@@ -10,7 +10,13 @@
             <fieldset>
                 <legend>Connexion</legend>
                 <p>Vous pouvez vous connecter via ce formulaire.</p>
-				<% boolean erreur = request.getAttribute("erreur");%>
+				<% Boolean erreur = null;
+				if(request.getAttribute("erreur") == null){
+					 erreur = false;
+				}
+				else{
+					 erreur = (Boolean) request.getAttribute("erreur");
+				}%>
                 <label for="nom" <% if(erreur){%>style="color:red"<%}%>>Login<span class="requis">*</span></label>
                 <input type="login" id="login" name="login" value="" size="20" maxlength="60" />
                 <br />

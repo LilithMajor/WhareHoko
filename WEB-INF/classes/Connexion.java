@@ -20,10 +20,11 @@ public class Connexion extends HttpServlet {
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
         /* Préparation de l'objet formulaire */
-        ConnexionForm form = new ConnexionForm();
+        RequetesBDD form = new RequetesBDD();
         HttpSession session = request.getSession(true);
         Boolean erreur = false;
-
+        String parent = "connexion";
+        
         /* Traitement de la requête et récupération du bean en résultant */
         String login = null;
 		try {
@@ -48,6 +49,7 @@ public class Connexion extends HttpServlet {
 		if(!erreur){
 			session.setAttribute( ATT_SESSION_USER, login );
 			request.setAttribute("erreur", erreur);
+			request.setAttribute("parent", parent);
 	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
 		}
     }

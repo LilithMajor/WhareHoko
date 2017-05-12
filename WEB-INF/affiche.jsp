@@ -4,8 +4,12 @@
 <TITLE>Affiche</TITLE>
 </HEAD>
 <BODY bgcolor="white">
-
-<h1>Votre login est : <%= session.getAttribute("sessionUtilisateur")%></h1></br>
-<p>On est le : date </p>
+<%if(request.getAttribute("parent").equals("connexion")){%>
+	<h1>Votre login est : <%= session.getAttribute("sessionUtilisateur")%></h1></br>
+<%}else{%>
+	<h1>Merci de vous être inscrit !
+	<h1>Votre login est : <%= session.getAttribute("sessionUtilisateur")%></h1></br>
+	<p>Vendez bien !</p>
+<%}%>
 </BODY> 
 </HTML>
