@@ -1,8 +1,8 @@
 package com;
 
 public class Proprietaire {
-	private String nom;
 	private String login;
+	private String nom;
 	private String email;
 	private String motdepasse;
 	

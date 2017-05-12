@@ -24,10 +24,11 @@ public class Enregistrement extends HttpServlet {
         HttpSession session = request.getSession(true);
         Boolean erreur = false;
         String parent = "enregistrement";
+        Proprietaire prop = new Proprietaire();
 
         /* Traitement de la requête et récupération du bean en résultant */
 		try {
-			form.enregistrerUtilisateur( request );
+			prop = form.enregistrerUtilisateur( request );
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
@@ -46,7 +47,7 @@ public class Enregistrement extends HttpServlet {
          * Utilisateur à la session, sinon suppression du bean de la session.
          */
 		if(!erreur){
-			//session.setAttribute( ATT_SESSION_USER, login );
+			session.setAttribute( ATT_SESSION_USER, prop );
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);
 	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
