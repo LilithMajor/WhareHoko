@@ -36,7 +36,7 @@ public class Connexion extends HttpServlet {
 		} catch (NullPointerException e){
 			erreur = true;
 			request.setAttribute("erreur", erreur);
-			this.getServletContext().getRequestDispatcher("/connexion.jsp").forward( request, response );
+			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward( request, response );
 		}
 
         /* Récupération de la session depuis la requête */

@@ -1,16 +1,19 @@
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.management.BadAttributeValueExpException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.Appartement;
 import com.Proprietaire;
 
 
@@ -69,6 +72,18 @@ public final class RequetesBDD {
 		prop.setEmail(email);
 		
 		return prop;
+    }
+    
+    public ArrayList<Appartement> getAllAppartements(HttpServletRequest request)throws ClassNotFoundException, SQLException{
+    	Class.forName("oracle.jdbc.OracleDriver");
+		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "GRAMMONTG");
+    	Statement statement = connect.createStatement();
+    	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
+    	ArrayList<Appartement> apparts = new ArrayList();
+    	while(result.next()) {
+    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
+    	}
+    	return apparts;
     }
     /*
      * Méthode utilitaire qui retourne null si un champ est vide, et son contenu

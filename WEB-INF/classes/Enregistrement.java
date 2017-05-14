@@ -36,7 +36,7 @@ public class Enregistrement extends HttpServlet {
 		} catch (NullPointerException e){
 			erreur = true;
 			request.setAttribute("erreur", erreur);
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
+			this.getServletContext().getRequestDispatcher("/WEB-INF/enregistrement.jsp").forward( request, response );
 		}
 
         /* Récupération de la session depuis la requête */

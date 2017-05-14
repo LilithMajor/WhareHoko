@@ -31,7 +31,7 @@ CREATE TABLE APPARTEMENTS (
 	DatePublication Date,
 	LoginProp VARCHAR2(20),
 	CONSTRAINT PK_APPARTEMENT PRIMARY KEY (Numero),
-	CONSTRAINT FK_PROP_APPART FOREIGN KEY (LoginProp) REFERENCES PROPRIETAIRES (Login),
+	CONSTRAINT FK_PROP_APPART FOREIGN KEY (LoginProp) REFERENCES PROPRIETAIRES (Login)
 );
 
 CREATE SEQUENCE NUMERO_APPART START WITH 0 MINVALUE 0 INCREMENT BY 1;
@@ -40,6 +40,7 @@ PROMPT  ->  Tables creees
 
 INSERT INTO PROPRIETAIRES VALUES ('Paul', 'paul','paul','paul@parisdescartes.fr');
 INSERT INTO PROPRIETAIRES VALUES ('Anne', 'anne','anne','anne@parisdescartes.fr');
+insert into appartements values (numero_appart.nextval, 't2', '25rue', '30',DATE '1970-01-01', 'paul');
 
 COMMIT;
 

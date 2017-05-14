@@ -1,5 +1,21 @@
 <?xml version="1.0" ?>
 <web-app> 
+
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<servlet-class>Index</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>connexion</servlet-name>
 		<servlet-class>Connexion</servlet-class>
