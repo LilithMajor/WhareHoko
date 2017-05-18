@@ -1,5 +1,6 @@
 <%@ page import="com.Appartement"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.Proprietaire"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -12,11 +13,13 @@
 			<a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
 			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a>
 			<a href="#">Panier</a>
-		<%}else{%>
+		<%}else{
+			Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
+			%>
 			<a href="<%=request.getContextPath()+"/vendre"%>">Mettre en vente</a>
 			<a href="<%=request.getContextPath()+"/deconnexion"%>">Se deconnecter</a>
 			<a href="#">Panier</a></br>
-			<h1>Bienvenu <%=session.getAttribute("sessionUtilisateur")%></h1>
+			<h1>Bienvenue <%=prop.getNom()%> !</h1>
 		<%}%>
 			
 		</header>

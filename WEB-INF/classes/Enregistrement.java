@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.Appartement;
 import com.Proprietaire;
 
 public class Enregistrement extends HttpServlet {
@@ -33,10 +35,12 @@ public class Enregistrement extends HttpServlet {
         Boolean erreur = false;
         String parent = "enregistrement";
         Proprietaire prop = new Proprietaire();
+        ArrayList<Appartement> apparts = new ArrayList();
 
         /* Traitement de la requête et récupération du bean en résultant */
 		try {
 			prop = form.enregistrerUtilisateur( request );
+			apparts = form.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
@@ -56,9 +60,10 @@ public class Enregistrement extends HttpServlet {
          */
 		if(!erreur){
 			session.setAttribute( ATT_SESSION_USER, prop );
+			request.setAttribute("apparts", apparts);
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);
-	        this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward( request, response );
+	        this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
 		}
     }
 }
