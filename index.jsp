@@ -7,9 +7,18 @@
     </head>
     <body>
 		<header>
-			<input name="Connect" type="submit" value="Se connecter" />
-			<input name="Enregistrer" type="submit" value="S'enregistrer" />
-			<input name="Panier" type="submit" value="Panier ()"/>
+		<%String parent = (String) request.getAttribute("parent");
+		if(parent.equals("accueil")){%>
+			<a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
+			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a>
+			<a href="#">Panier</a>
+		<%}else{%>
+			<a href="<%=request.getContextPath()+"/vendre"%>">Mettre en vente</a>
+			<a href="<%=request.getContextPath()+"/deconnexion"%>">Se deconnecter</a>
+			<a href="#">Panier</a></br>
+			<h1>Bienvenu <%=session.getAttribute("sessionUtilisateur")%></h1>
+		<%}%>
+			
 		</header>
 		<div id="Cadre">
 			<div id="Search">

@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -12,10 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.Appartement;
 import com.Proprietaire;
 
 public class Connexion extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    
+    public void doGet( HttpServletRequest request, HttpServletResponse response ){
+    	try {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward( request, response );
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+    }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
@@ -23,12 +33,14 @@ public class Connexion extends HttpServlet {
         RequetesBDD form = new RequetesBDD();
         HttpSession session = request.getSession(true);
         Boolean erreur = false;
+        ArrayList<Appartement> apparts = new ArrayList();
         String parent = "connexion";
         
         /* Traitement de la requête et récupération du bean en résultant */
         Proprietaire prop = new Proprietaire();
 		try {
 			prop = form.connecterUtilisateur( request );
+			apparts = form.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
@@ -48,9 +60,10 @@ public class Connexion extends HttpServlet {
          */
 		if(!erreur){
 			session.setAttribute( ATT_SESSION_USER, prop );
+			request.setAttribute("apparts", apparts);
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);
-	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
+	        this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
 		}
     }
 }

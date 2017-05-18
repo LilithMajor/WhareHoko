@@ -76,7 +76,7 @@ public final class RequetesBDD {
     
     public ArrayList<Appartement> getAllAppartements(HttpServletRequest request)throws ClassNotFoundException, SQLException{
     	Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "GRAMMONTG");
+		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
     	ArrayList<Appartement> apparts = new ArrayList();

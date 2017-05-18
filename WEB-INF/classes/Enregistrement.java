@@ -16,6 +16,14 @@ import com.Proprietaire;
 
 public class Enregistrement extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    
+    public void doGet( HttpServletRequest request, HttpServletResponse response ){
+    	try {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/enregistrement.jsp").forward( request, response );
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+    }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
@@ -50,7 +58,7 @@ public class Enregistrement extends HttpServlet {
 			session.setAttribute( ATT_SESSION_USER, prop );
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);
-	        this.getServletContext().getRequestDispatcher("/WEB-INF/affiche.jsp").forward( request, response );
+	        this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward( request, response );
 		}
     }
 }

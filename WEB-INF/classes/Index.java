@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.Appartement;
 
 public class Index extends HttpServlet {
-
+	
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		RequetesBDD form = new RequetesBDD();
 		ArrayList<Appartement> apparts = new ArrayList();
@@ -23,6 +23,7 @@ public class Index extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		request.setAttribute("apparts", apparts);
+		request.setAttribute("parent", "accueil");
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
 	}
 	
