@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,4 +94,29 @@ public final class RequetesBDD {
         String valeur = request.getParameter( nomChamp );
             return valeur;
     }
+
+	public void addAppart(HttpServletRequest request, Proprietaire attribute) throws SQLException, ClassNotFoundException {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+    	Statement statement = connect.createStatement();
+        String adresse = getValeurChamp( request, "adresse" );
+        String type = getValeurChamp( request, "type" );
+        String prix = getValeurChamp(request, "prix");
+        String proprio = attribute.getLogin();
+        java.util.Date date = new java.util.Date();
+    	String sql = "INSERT INTO APPARTEMENTS VALUES ("+"'"+adresse+"',"+"'"+type+"',"+"'"+prix+"','"+proprio+"',"+new java.sql.Date(date.getTime())+")";
+    	statement.executeUpdate(sql);
+	}
+
+	public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+    	Statement statement = connect.createStatement();
+    	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp="+attribute.getLogin());
+    	ArrayList<Appartement> apparts = new ArrayList();
+    	while(result.next()) {
+    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
+    	}
+    	return apparts;
+	}
 }

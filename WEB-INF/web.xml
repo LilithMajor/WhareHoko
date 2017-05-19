@@ -45,4 +45,24 @@
 		<servlet-name>Deconnexion</servlet-name>
 		<url-pattern>/deconnexion</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Consultation</servlet-name>
+		<servlet-class>Consultation</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Consultation</servlet-name>
+		<url-pattern>/consultation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CreateAppart</servlet-name>
+		<servlet-class>CreateAppart</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CreateAppart</servlet-name>
+		<url-pattern>/creerAppart</url-pattern>
+	</servlet-mapping>
 </web-app>

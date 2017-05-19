@@ -16,7 +16,7 @@
 		<%}else{
 			Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 			%>
-			<a href="<%=request.getContextPath()+"/vendre"%>">Mettre en vente</a>
+			<a href="<%=request.getContextPath()+"/creerAppart"%>">Mettre en vente</a>
 			<a href="<%=request.getContextPath()+"/deconnexion"%>">Se deconnecter</a>
 			<a href="#">Panier</a></br>
 			<h1>Bienvenue <%=prop.getNom()%> !</h1>
