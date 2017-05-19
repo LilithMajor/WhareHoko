@@ -5,7 +5,7 @@
     </head>
     <body>
 		<div id="Cadre">
-			<form method="post" action="CreateAppart">
+			<form method="post" action="creerAppart">
 				<fieldset>
 					<label>Adresse : </label> <input type="textfield" id="adresse" name="adresse" size="20" maxlength="75"/>
 					<select name="type">

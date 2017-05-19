@@ -47,13 +47,11 @@ public final class RequetesBDD {
     		throw new NullPointerException();
     	}
     	else{
-			System.out.println("test");
 			prop.setNom(result.getString("Nom"));
 			prop.setLogin(result.getString("Login"));
 			prop.setMotdepasse(result.getString("Mdp"));
 			prop.setEmail(result.getString("Email"));
 		}       
-		System.out.println(prop);
         return prop;
     }
     
@@ -86,8 +84,6 @@ public final class RequetesBDD {
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
     	ArrayList<Appartement> apparts = new ArrayList<Appartement>();
     	while(result.next()) {
-    		System.out.println(result.getInt(1));
-    		System.out.println(result.getString(2));
     		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
     	}
     	return apparts;
@@ -102,10 +98,9 @@ public final class RequetesBDD {
     }
 
 	public void addAppart(HttpServletRequest request, Proprietaire attribute) throws SQLException, ClassNotFoundException {
-		Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
         String adresse = getValeurChamp( request, "adresse" );
+        System.out.println(adresse);
         String type = getValeurChamp( request, "type" );
         String prix = getValeurChamp(request, "prix");
         String proprio = attribute.getLogin();
@@ -115,8 +110,6 @@ public final class RequetesBDD {
 	}
 
 	public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp="+attribute.getLogin());
     	ArrayList<Appartement> apparts = new ArrayList();

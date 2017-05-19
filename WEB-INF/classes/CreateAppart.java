@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.RequetesBDD;
-import com.Appartement;
+import database.Database;
 import com.Proprietaire;
 
 public class CreateAppart extends HttpServlet{
-    public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7954141786830634601L;
+	public static final String ATT_SESSION_USER = "sessionUtilisateur";
     
     public void doGet( HttpServletRequest request, HttpServletResponse response ){
     	try {
@@ -26,10 +29,10 @@ public class CreateAppart extends HttpServlet{
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
         /* Préparation de l'objet formulaire */
-        RequetesBDD form = new RequetesBDD();
+    	Database db = Database.getDatabase();
         HttpSession session = request.getSession(true);
         try {
-			form.addAppart(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
+			db.addAppart(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

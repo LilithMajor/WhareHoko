@@ -29,7 +29,6 @@ public class Index extends HttpServlet {
 			System.out.println("SQLException");
 			System.out.println(e.getMessage());
 		}
-		System.out.println(apparts);
 		request.setAttribute("apparts", apparts);
 		request.setAttribute("parent", "accueil");
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );

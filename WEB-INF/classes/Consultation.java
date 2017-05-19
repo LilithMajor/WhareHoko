@@ -8,23 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.Database;
 import database.RequetesBDD;
 import com.Appartement;
 import com.Proprietaire;
 
 public class Consultation extends HttpServlet{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4220047334471003445L;
 public static final String ATT_SESSION_USER = "sessionUtilisateur";
     
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
     	 
         /* Préparation de l'objet formulaire */
-        RequetesBDD form = new RequetesBDD();
+    	Database db = Database.getDatabase();
         HttpSession session = request.getSession(true);
         ArrayList<Appartement> apparts = new ArrayList();
         
         /* Traitement de la requête et récupération du bean en résultant */
 		try {
-			apparts = form.getAppartByProp(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
+			apparts = db.getAppartByProp(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {

@@ -57,12 +57,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CreateAppart</servlet-name>
+		<servlet-name>createAppart</servlet-name>
 		<servlet-class>CreateAppart</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>CreateAppart</servlet-name>
+		<servlet-name>createAppart</servlet-name>
 		<url-pattern>/creerAppart</url-pattern>
 	</servlet-mapping>
 </web-app>
