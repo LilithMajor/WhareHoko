@@ -2,11 +2,14 @@ package database;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
@@ -100,18 +103,23 @@ public final class RequetesBDD {
 	public void addAppart(HttpServletRequest request, Proprietaire attribute) throws SQLException, ClassNotFoundException {
     	Statement statement = connect.createStatement();
         String adresse = getValeurChamp( request, "adresse" );
-        System.out.println(adresse);
         String type = getValeurChamp( request, "type" );
         String prix = getValeurChamp(request, "prix");
         String proprio = attribute.getLogin();
-        java.util.Date date = new java.util.Date();
-    	String sql = "INSERT INTO APPARTEMENTS VALUES ("+"'"+adresse+"',"+"'"+type+"',"+"'"+prix+"','"+proprio+"',"+new java.sql.Date(date.getTime())+")";
+        System.out.println(type);
+        System.out.println(adresse);
+        System.out.println(prix);
+        System.out.println(proprio);
+    	java.util.Date d = new java.util.Date();
+    	DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+    	String df=f.format(d);
+    	String sql = "INSERT INTO APPARTEMENTS VALUES (numero_appart.nextval,'"+type+"','"+adresse+"','"+prix+"',DATE '"+df+"','"+proprio+"','0')"; 
     	statement.executeUpdate(sql);
 	}
 
 	public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
     	Statement statement = connect.createStatement();
-    	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp="+attribute.getLogin());
+    	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp='"+attribute.getLogin()+"'");
     	ArrayList<Appartement> apparts = new ArrayList();
     	while(result.next()) {
     		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
