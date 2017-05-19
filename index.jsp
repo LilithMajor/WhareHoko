@@ -25,35 +25,41 @@
 		</header>
 		<div id="Cadre">
 			<div id="Search">
-				<form method="post" action="searchAppart">
 					<fieldset>
-						<input type="textfield" id="By_Num" name="login" value="Numero Appartement" size="20" maxlength="60" onClick="eraseInput(this);"/>
-						<select name="By_Type">
+						<input type="textfield" id="byNum" name="num" value="Numero Appartement" size="20" maxlength="60" onClick="eraseInput(this);"/>
+						<select name="type">
 							<option>STUDIO</option>
 							<option>T1</option>
 							<option>T2</option>
 							<option>T3</option>
 						</select>
-						<input type="submit" name="Find" value="Search">
+						<input type="submit" name="search" value="Search">
 					</fieldset>
-				</form>
 			</div>
-			<div id="Apparts">
+			<table id="apparts">
+				<tr>
+					<th>Numero</th>
+					<th>Adresse</th>
+					<th>Type</th>
+					<th>Montant</th>
+					<th>Date de publication</th>
+					<th>Proprietaire</th>
+					<th>Selectionner</th>
+					<th>Plus d'informations</th>
+				</tr>
 				<% for(Appartement a : (ArrayList<Appartement>) request.getAttribute("apparts")){%>
-					<div>
-						<div name="Appart_Infos">
-							<%=a.getNum()%>
-							<%=a.getAdresse()%>
-							<%=a.getTypeAppart()%>
-							<%=a.getMontantVente()%>
-							<%=a.getDatePublication()%>
-							<%=a.getLoginProp()%>
-							<a name="test" action="informations"> + Infos </a>
-							<a action="informations"> + Infos </a>
-						</div>		
-					</div>
+						<tr id="ligne " + <%=a.getNum()%>>
+							<td><%=a.getNum()%></td>
+							<td><%=a.getAdresse()%></td>
+							<td><%=a.getTypeAppart()%></td>
+							<td><%=a.getMontantVente()%></td>
+							<td><%=a.getDatePublication()%></td>
+							<td><%=a.getLoginProp()%></td>
+							<td><input type="checkbox" id="cbox + <%=a.getNum()%>" value="panier"></td>
+							<td><a href="<%=request.getContextPath()+"/consulterAppart?id=" + a.getNum()%>"> + Infos </a></td>
+						</tr>		
 				<%}%>
-			</div>
+			<table>
 		</div>
 		<script type="text/javascript">
 			var eraseInput = (function() {

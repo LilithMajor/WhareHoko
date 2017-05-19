@@ -14,7 +14,6 @@ import com.Appartement;
 import com.Proprietaire;
 
 import database.Database;
-import database.RequetesBDD;
 
 public class Enregistrement extends HttpServlet {
     /**

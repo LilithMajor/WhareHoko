@@ -85,6 +85,8 @@ public final class RequetesBDD {
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
     	ArrayList<Appartement> apparts = new ArrayList<Appartement>();
     	while(result.next()) {
+    		System.out.println(result.getInt(1));
+    		System.out.println(result.getString(2));
     		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
     	}
     	return apparts;
