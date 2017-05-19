@@ -10,7 +10,12 @@ import javax.servlet.http.HttpSession;
 
 public class Déconnexion extends HttpServlet {
 
-    public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2494056528101801716L;
+
+	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Récupération et destruction de la session en cours */
         HttpSession session = request.getSession();
         session.invalidate();

@@ -2,10 +2,7 @@
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +13,14 @@ import javax.servlet.http.HttpSession;
 import com.Appartement;
 import com.Proprietaire;
 
+import database.Database;
+
 public class Enregistrement extends HttpServlet {
-    public static final String ATT_SESSION_USER = "sessionUtilisateur";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3731449537640734889L;
+	public static final String ATT_SESSION_USER = "sessionUtilisateur";
     
     public void doGet( HttpServletRequest request, HttpServletResponse response ){
     	try {
@@ -30,17 +33,17 @@ public class Enregistrement extends HttpServlet {
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
         /* Préparation de l'objet formulaire */
-        RequetesBDD form = new RequetesBDD();
+    	 Database db = Database.getDatabase();
         HttpSession session = request.getSession(true);
         Boolean erreur = false;
         String parent = "enregistrement";
         Proprietaire prop = new Proprietaire();
-        ArrayList<Appartement> apparts = new ArrayList();
+        ArrayList<Appartement> apparts = new ArrayList<Appartement>();
 
         /* Traitement de la requête et récupération du bean en résultant */
 		try {
-			prop = form.enregistrerUtilisateur( request );
-			apparts = form.getAllAppartements(request);
+			prop = db.enregistrerUtilisateur( request );
+			apparts = db.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {

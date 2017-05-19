@@ -1,17 +1,13 @@
+package database;
 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.management.BadAttributeValueExpException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.Appartement;
@@ -23,17 +19,29 @@ public final class RequetesBDD {
     private static final String CHAMP_PASS   = "motdepasse";
     private static final String CHAMP_NAME   = "nom";
     private static final String CHAMP_EMAIL   = "email";
+    private Connection connect;
+    
+    public RequetesBDD(){
+    	try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			this.connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 
     public Proprietaire connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
-    	Statement statement = connect.createStatement();
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
         System.out.println(login);
         System.out.println(motDePasse);
         Proprietaire prop = new Proprietaire();
+        Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
     	if(!result.next()){
     		throw new NullPointerException();
@@ -50,8 +58,6 @@ public final class RequetesBDD {
     }
     
     public Proprietaire enregistrerUtilisateur(HttpServletRequest request)throws ClassNotFoundException, SQLException {
-    	Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
@@ -76,12 +82,12 @@ public final class RequetesBDD {
     }
     
     public ArrayList<Appartement> getAllAppartements(HttpServletRequest request)throws ClassNotFoundException, SQLException{
-    	Class.forName("oracle.jdbc.OracleDriver");
-		Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
     	Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
-    	ArrayList<Appartement> apparts = new ArrayList();
+    	ArrayList<Appartement> apparts = new ArrayList<Appartement>();
     	while(result.next()) {
+    		System.out.println(result.getInt(1));
+    		System.out.println(result.getString(2));
     		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
     	}
     	return apparts;

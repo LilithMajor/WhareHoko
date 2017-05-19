@@ -9,19 +9,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Appartement;
 
+import database.Database;
+
 public class Index extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1884058970705099571L;
+
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-		RequetesBDD form = new RequetesBDD();
-		ArrayList<Appartement> apparts = new ArrayList();
+		Database db = Database.getDatabase();
+		ArrayList<Appartement> apparts = new ArrayList<Appartement>();
 		try {
-			apparts = form.getAllAppartements(request);
+			apparts = db.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
 			System.out.println("SQLException");
 			System.out.println(e.getMessage());
 		}
+		System.out.println(apparts);
 		request.setAttribute("apparts", apparts);
 		request.setAttribute("parent", "accueil");
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward( request, response );
