@@ -27,9 +27,14 @@
 							<td><%=a.getMontantVente()%></td>
 							<td><%=a.getDatePublication()%></td>
 							<td><%=a.getLoginProp()%></td>
-							<td><input type=submit href="<%=request.getContextPath()+"/declarerVente?id=" + a.getNum()%>"> DÃ©clarer vente </input></td>
 						</tr>		
 				<%}%>
+				 <form method="post" action="vendre">
+					<fieldset>
+						<label> Prix : </label> <input type=Number id=prix name=prix> </input></td>
+						<input type=submit class="sansLabel"> Déclarer vente </input>
+					</fieldset>
+				</form>
 			<table>
 		</div>
 	</body>
