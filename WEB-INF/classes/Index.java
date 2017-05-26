@@ -27,7 +27,6 @@ public class Index extends HttpServlet {
 			System.out.println("ClassNotFound");
 		} catch (SQLException e) {
 			System.out.println("SQLException");
-			System.out.println(e.getMessage());
 		}
 		request.setAttribute("apparts", apparts);
 		request.setAttribute("parent", "accueil");

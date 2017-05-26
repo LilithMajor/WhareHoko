@@ -75,5 +75,5 @@
 		<servlet-name>declarerVente</servlet-name>
 		<url-pattern>/declarerVente</url-pattern>
 	</servlet-mapping>
-</web-app>
+	
 </web-app>
