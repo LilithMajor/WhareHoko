@@ -27,7 +27,8 @@ public final class RequetesBDD {
     public RequetesBDD(){
     	try {
 			Class.forName("oracle.jdbc.OracleDriver");
-			this.connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+			//this.connect = DriverManager.getConnection("jdbc:oracle:thin:@vs-oracle2:1521:ORCL", "GRAMMONTG", "GRAMMONTG");
+			this.connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "GRAMMONTG");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
