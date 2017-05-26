@@ -65,4 +65,15 @@
 		<servlet-name>createAppart</servlet-name>
 		<url-pattern>/creerAppart</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>declarerVente</servlet-name>
+		<servlet-class>DeclarerVente</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>declarerVente</servlet-name>
+		<url-pattern>/declarerVente</url-pattern>
+	</servlet-mapping>
+</web-app>
 </web-app>

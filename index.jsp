@@ -59,7 +59,6 @@
 							<td><%=a.getDatePublication()%></td>
 							<td><%=a.getLoginProp()%></td>
 							<td><input type="checkbox" id="cbox + <%=a.getNum()%>" value="panier"></td>
-							<td><a href="<%=request.getContextPath()+"/consulterAppart?id=" + a.getNum()%>"> + Infos </a></td>
 						</tr>		
 				<%}%>
 			<table>

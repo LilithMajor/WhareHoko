@@ -41,4 +41,12 @@ public class Database {
 	 public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
 		 return db.getAppartByProp(request, attribute);
 	 }
+	 
+	 public ArrayList<Appartement> getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException{
+		 return db.getAppartById(request, attribute);
+	 }
+	 
+	 public int setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws ClassNotFoundException, SQLException{
+		 return db.setMontantVenteAppart(request, attribute, prix);
+	 }
 }
