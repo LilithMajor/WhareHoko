@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import database.Database;
 import com.Appartement;
 import com.Proprietaire;
+
+import Exception.DatabaseException;
 
 public class Consultation extends HttpServlet{
 /**
@@ -31,7 +32,7 @@ public static final String ATT_SESSION_USER = "sessionUtilisateur";
 			apparts = db.getAppartByProp(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
-		} catch (SQLException e) {
+		} catch (DatabaseException e) {
 			System.out.println("SQLException");
 		}
 		request.setAttribute("appartsAmoi", apparts);
@@ -39,6 +40,6 @@ public static final String ATT_SESSION_USER = "sessionUtilisateur";
     }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-       
+
     }
 }

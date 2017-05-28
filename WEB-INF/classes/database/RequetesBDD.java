@@ -157,4 +157,11 @@ public final class RequetesBDD {
     	statement.executeUpdate("DELETE FROM APPARTEMENTS WHERE DatePublication <=DATE '"+df+"'");
     	return emails;
 	}
+
+
+	public void supprimerAppart(HttpServletRequest request, String id) throws SQLException {
+		Statement statement = connect.createStatement();
+    	statement.executeUpdate("DELETE FROM APPARTEMENTS WHERE Numero="+id);
+    	connect.commit();
+	}
 }

@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Appartement;
 
+import Exception.DatabaseException;
 import database.Database;
 
 public class Index extends HttpServlet {
@@ -25,8 +25,11 @@ public class Index extends HttpServlet {
 			apparts = db.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
-		} catch (SQLException e) {
+		} catch (DatabaseException e) {
 			System.out.println("SQLException");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		request.setAttribute("apparts", apparts);
 		request.setAttribute("parent", "accueil");
