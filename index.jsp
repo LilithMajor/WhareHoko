@@ -11,7 +11,8 @@
 		<%Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 		if(prop == null){
 			%><a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
-			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a><%
+			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a>
+			<a href="<%=request.getContextPath()+"/afficherpanier"%>">Panier</a></br><%
 		}else{
 			%><a href="<%=request.getContextPath()+"/creerAppart"%>">Mettre en vente</a>
 			<a href="<%=request.getContextPath()+"/consultation"%>">Consulter ses apparts</a>
@@ -59,9 +60,7 @@
 							<td><%if(vendu==0){
 								%>En vente</td><%
 							}else{%>Vendu</td><%}
-							if(prop!=null){
-								%><td><a href="<%=request.getContextPath()+"/ajouterpanier?id=" + a.getNum()%>"><input type="submit" value="Ajouter"></input></a></td><%
-							}%>
+								%><td><a href="<%=request.getContextPath()+"/ajouterpanier?id=" + a.getNum()%>"><input type="submit" value="Ajouter"></input></a></td>
 						</tr>		
 				<%}%>
 			<table>

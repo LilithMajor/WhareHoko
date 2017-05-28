@@ -24,7 +24,6 @@ public class CreateAppart extends HttpServlet{
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-    	System.out.println();
     }
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         

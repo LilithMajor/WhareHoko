@@ -24,6 +24,9 @@ public class AjouterPanier extends HttpServlet {
 		 HttpSession session = request.getSession(true);
 		 @SuppressWarnings("unchecked")
 		ArrayList<Appartement> panier = (ArrayList<Appartement>) session.getAttribute("panier");
+		 if(panier == null) {
+			 panier = new ArrayList<Appartement>();
+		 }
 		 Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 		 Appartement appart = new Appartement();
 		 String id = request.getParameter("id");
@@ -37,7 +40,9 @@ public class AjouterPanier extends HttpServlet {
 				e.printStackTrace();
 			}
 	    panier.add(appart);
-	    prop.setApparts(panier);
+	    if(prop != null) {
+		    prop.setApparts(panier);
+	    }
 	    session.setAttribute("panier", panier);
 	    response.sendRedirect(request.getContextPath() + "/index");
 	}

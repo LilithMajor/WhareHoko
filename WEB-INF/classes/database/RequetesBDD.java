@@ -39,6 +39,7 @@ public final class RequetesBDD {
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
         Proprietaire prop = new Proprietaire();
+        ArrayList<Appartement> panier = new ArrayList<Appartement>();
         Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
     	if(!result.next()){
@@ -49,6 +50,7 @@ public final class RequetesBDD {
 			prop.setLogin(result.getString("Login"));
 			prop.setMotdepasse(result.getString("Mdp"));
 			prop.setEmail(result.getString("Email"));
+			prop.setApparts(panier);
 		}       
         return prop;
     }
@@ -131,7 +133,6 @@ public final class RequetesBDD {
 
 	public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws SQLException {
 		Statement statement = connect.createStatement();
-		System.out.println(prix);
     	statement.executeUpdate("UPDATE APPARTEMENTS SET montantVente="+prix+", vendu='1' WHERE Numero="+attribute);
     	connect.commit();
 	}
