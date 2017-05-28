@@ -8,11 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.Appartement;
+import com.Proprietaire;
+
+import database.Database;
+
 public class AjouterPanier extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		Database db = Database.getDatabase();
 		 HttpSession session = request.getSession(true);
 		 ArrayList<Appartement> panier = (ArrayList<Appartement>) session.getAttribute("panier");
+		 Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 		 Appartement appart = new Appartement();
 		 String id = request.getParameter("id");
 	    	try {
@@ -25,6 +31,7 @@ public class AjouterPanier extends HttpServlet {
 				e.printStackTrace();
 			}
 	    panier.add(appart);
+	    prop.setApparts(panier);
 	    session.setAttribute("panier", panier);
 	    response.sendRedirect(request.getContextPath() + "/index");
 	}
