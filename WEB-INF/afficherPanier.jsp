@@ -17,8 +17,8 @@
 					<th>Proprietaire</th>
 					<th>Etat</th>
 				</tr>
-				<% ArrayList<Appartement> apparts = (ArrayList<Appartement>) session.getAttribute("panier"));
-				for(Appartement a : apparts{%>
+				<% ArrayList<Appartement> apparts = (ArrayList<Appartement>) session.getAttribute("panier");
+				for(Appartement a : apparts){%>
 						<tr id="ligne " + <%=a.getNum()%>>
 						<%int vendu = a.getVendu();%>
 							<td><%=a.getNum()%></td>

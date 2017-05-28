@@ -86,5 +86,13 @@
 		<url-pattern>/ajouterpanier</url-pattern>
 	</servlet-mapping>
 	
-	
+	<servlet>
+		<servlet-name>afficherPanier</servlet-name>
+		<servlet-class>afficherPanier</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>afficherPanier</servlet-name>
+		<url-pattern>/afficherpanier</url-pattern>
+	</servlet-mapping>
 </web-app>

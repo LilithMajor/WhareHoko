@@ -14,6 +14,11 @@ import com.Proprietaire;
 import database.Database;
 
 public class AjouterPanier extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		Database db = Database.getDatabase();
 		 HttpSession session = request.getSession(true);

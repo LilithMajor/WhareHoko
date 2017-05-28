@@ -11,13 +11,12 @@
 		<%Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 		if(prop == null){
 			%><a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
-			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a>
-			<a href="#">Panier</a><%
+			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a><%
 		}else{
 			%><a href="<%=request.getContextPath()+"/creerAppart"%>">Mettre en vente</a>
 			<a href="<%=request.getContextPath()+"/consultation"%>">Consulter ses apparts</a>
 			<a href="<%=request.getContextPath()+"/deconnexion"%>">Se deconnecter</a>
-			<a href="#">Panier</a></br>
+			<a href="<%=request.getContextPath()+"/afficherpanier"%>">Panier</a></br>
 			<h1>Bienvenue <%=prop.getNom()%> !</h1><%
 		}
 		%>
@@ -34,7 +33,7 @@
 							<option>T3</option>
 						</select>
 						<input type="submit" id="search" value="Search">
-						<input type="submit" id="reset" value="reset" onClick="reset();">
+						<input type="submit" id="reset" value="Reset" onClick="reset();">
 					</fieldset>
 			</div>
 			<table id="apparts">
@@ -60,8 +59,9 @@
 							<td><%if(vendu==0){
 								%>En vente</td><%
 							}else{%>Vendu</td><%}
-							%>
-							<td><a href="<%=request.getContextPath()+"/ajouterpanier?id=" + a.getNum()%>"><input type="submit" value="Ajouter"></input></a></td>
+							if(prop!=null){
+								%><td><a href="<%=request.getContextPath()+"/ajouterpanier?id=" + a.getNum()%>"><input type="submit" value="Ajouter"></input></a></td><%
+							}%>
 						</tr>		
 				<%}%>
 			<table>
