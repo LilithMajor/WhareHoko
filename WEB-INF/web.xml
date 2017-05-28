@@ -100,4 +100,15 @@
 		<servlet-name>afficherPanier</servlet-name>
 		<url-pattern>/afficherpanier</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>supprimerappart</servlet-name>
+		<servlet-class>SupprAppart</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>supprimerappart</servlet-name>
+		<url-pattern>/supprimerappart</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

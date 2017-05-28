@@ -18,6 +18,7 @@
 					<th>Proprietaire</th>
 					<th>Etat</th>
 					<th>Declarer vente</th>
+					<th>Supprimer</th>
 				</tr>
 				<% for(Appartement a : (ArrayList<Appartement>) request.getAttribute("appartsAmoi")){%>
 						<tr id="ligne " + <%=a.getNum()%>>
@@ -33,6 +34,9 @@
 								<td><a href="<%=request.getContextPath()+"/declarervente?id=" + a.getNum()%>"><input type="submit" value="Declarer" ></input></a></td><%
 							}else{%>Vendu</td><%}
 							%>
+							<td>
+								<a href="<%=request.getContextPath()+"/supprimerappart?id=" + a.getNum()%>"><input type="submit" value="Supprimer" ></input></a>
+							</td>
 						</tr>		
 				<%}%>
 			<table>

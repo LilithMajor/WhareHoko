@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.sql.SQLException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import database.Database;
 import com.Proprietaire;
+
+import Exception.DatabaseException;
 
 public class CreateAppart extends HttpServlet{
     /**
@@ -32,7 +32,7 @@ public class CreateAppart extends HttpServlet{
         HttpSession session = request.getSession(true);
         try {
 			db.addAppart(request, (Proprietaire) session.getAttribute("sessionUtilisateur"));
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | DatabaseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

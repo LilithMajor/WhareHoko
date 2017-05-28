@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.Appartement;
 import com.Proprietaire;
 
+import Exception.DatabaseException;
 import database.Database;
 
 
@@ -48,7 +48,7 @@ public class Connexion extends HttpServlet {
 			apparts = db.getAllAppartements(request);
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFound");
-		} catch (SQLException e) {
+		} catch (DatabaseException e) {
 			System.out.println("SQLException");
 		} catch (NullPointerException e){
 			erreur = true;

@@ -136,4 +136,11 @@ public final class RequetesBDD {
     	statement.executeUpdate("UPDATE APPARTEMENTS SET montantVente="+prix+", vendu='1' WHERE Numero="+attribute);
     	connect.commit();
 	}
+
+
+	public void supprimerAppart(HttpServletRequest request, String id) throws SQLException {
+		Statement statement = connect.createStatement();
+    	statement.executeUpdate("DELETE FROM APPARTEMENTS WHERE Numero="+id);
+    	connect.commit();
+	}
 }
