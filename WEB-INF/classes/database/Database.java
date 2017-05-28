@@ -49,4 +49,8 @@ public class Database {
 	 public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws ClassNotFoundException, SQLException{
 		 db.setMontantVenteAppart(request, attribute, prix);
 	 }
+	 
+	 public ArrayList<String> deleteOldAppart() throws ClassNotFoundException, SQLException{
+		return db.deleteOldAppart();
+	 }
 }

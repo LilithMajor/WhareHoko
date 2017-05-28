@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.Appartement;
@@ -103,7 +106,7 @@ public final class RequetesBDD {
         String type = getValeurChamp( request, "type" );
         String prix = getValeurChamp(request, "prix");
         String proprio = attribute.getLogin();
-    	java.util.Date d = new java.util.Date();
+    	Date d = new Date();
     	DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
     	String df=f.format(d);
     	String sql = "INSERT INTO APPARTEMENTS VALUES (numero_appart.nextval,'"+type+"','"+adresse+"','"+prix+"',DATE '"+df+"','"+proprio+"','0')"; 
@@ -134,6 +137,24 @@ public final class RequetesBDD {
 	public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws SQLException {
 		Statement statement = connect.createStatement();
     	statement.executeUpdate("UPDATE APPARTEMENTS SET montantVente="+prix+", vendu='1' WHERE Numero="+attribute);
-    	connect.commit();
+	}
+
+
+	public ArrayList<String> deleteOldAppart() throws SQLException {
+		Statement statement = connect.createStatement();
+		Calendar cal = Calendar.getInstance();
+		Date d = new Date();
+		cal.setTime(d);
+		cal.add(Calendar.MONTH, -3);
+		DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		f.setCalendar(cal);
+    	String df=f.format(cal.getTime());
+    	ResultSet result = statement.executeQuery("SELECT DISTINCT Email FROM PROPRIETAIRES, APPARTEMENTS WHERE APPARTEMENTS.DatePublication <=DATE '"+df+"'");
+    	ArrayList<String> emails = new ArrayList<String>();
+    	while(result.next()) {
+    		emails.add(result.getString(1));
+    	}
+    	statement.executeUpdate("DELETE FROM APPARTEMENTS WHERE DatePublication <=DATE '"+df+"'");
+    	return emails;
 	}
 }
