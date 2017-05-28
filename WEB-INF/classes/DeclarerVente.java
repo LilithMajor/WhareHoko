@@ -23,7 +23,7 @@ public class DeclarerVente extends HttpServlet{
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws IOException, ServletException{
     	Database db = Database.getDatabase();
     	String id = request.getParameter("id");
-    	ArrayList<Appartement> appart = new ArrayList<Appartement>();
+    	Appartement appart = new Appartement();
     	try {
 			appart = db.getAppartById(request, id);
 		} catch (ClassNotFoundException e) {

@@ -73,7 +73,18 @@
 
 	<servlet-mapping>
 		<servlet-name>declarerVente</servlet-name>
-		<url-pattern>/declarerVente</url-pattern>
+		<url-pattern>/declarervente</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ajouterPanier</servlet-name>
+		<servlet-class>AjouterPanier</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ajouterPanier</servlet-name>
+		<url-pattern>/ajouterpanier</url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>

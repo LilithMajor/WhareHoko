@@ -38,6 +38,7 @@ public class Connexion extends HttpServlet {
         HttpSession session = request.getSession(true);
         Boolean erreur = false;
         ArrayList<Appartement> apparts = new ArrayList<Appartement>();
+        ArrayList<Appartement> panier = new ArrayList<Appartement>();
         String parent = "connexion";
         
         /* Traitement de la requête et récupération du bean en résultant */
@@ -64,6 +65,7 @@ public class Connexion extends HttpServlet {
          */
 		if(!erreur){
 			session.setAttribute( ATT_SESSION_USER, prop );
+			session.setAttribute( "panier", panier );
 			request.setAttribute("apparts", apparts);
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("parent", parent);

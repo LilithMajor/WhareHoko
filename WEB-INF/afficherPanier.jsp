@@ -1,6 +1,5 @@
 <%@ page import="com.Appartement"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.Proprietaire"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -17,9 +16,9 @@
 					<th>Date de publication</th>
 					<th>Proprietaire</th>
 					<th>Etat</th>
-					<th>Declarer vente</th>
 				</tr>
-				<% for(Appartement a : (ArrayList<Appartement>) request.getAttribute("appartsAmoi")){%>
+				<% ArrayList<Appartement> apparts = (ArrayList<Appartement>) session.getAttribute("panier"));
+				for(Appartement a : apparts{%>
 						<tr id="ligne " + <%=a.getNum()%>>
 						<%int vendu = a.getVendu();%>
 							<td><%=a.getNum()%></td>
@@ -30,7 +29,7 @@
 							<td><%=a.getLoginProp()%></td>
 							<td><%if(vendu==0){
 								%>En vente</td>
-								<td><a href="<%=request.getContextPath()+"/declarervente?id=" + a.getNum()%>"><input type="submit" value="Declarer" ></input></a></td><%
+							<%
 							}else{%>Vendu</td><%}
 							%>
 						</tr>		

@@ -8,21 +8,19 @@
     </head>
     <body>
 		<header>
-		<%String parent = (String) request.getAttribute("parent");
-		if(parent.equals("accueil")){%>
-			<a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
+		<%Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
+		if(prop == null){
+			%><a href="<%=request.getContextPath()+"/connexion"%>">Se connecter</a>
 			<a href="<%=request.getContextPath()+"/enregistrement"%>">S'enregister</a>
-			<a href="#">Panier</a>
-		<%}else{
-			Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
-			%>
-			<a href="<%=request.getContextPath()+"/creerAppart"%>">Mettre en vente</a>
+			<a href="#">Panier</a><%
+		}else{
+			%><a href="<%=request.getContextPath()+"/creerAppart"%>">Mettre en vente</a>
 			<a href="<%=request.getContextPath()+"/consultation"%>">Consulter ses apparts</a>
 			<a href="<%=request.getContextPath()+"/deconnexion"%>">Se deconnecter</a>
 			<a href="#">Panier</a></br>
-			<h1>Bienvenue <%=prop.getNom()%> !</h1>
-		<%}%>
-			
+			<h1>Bienvenue <%=prop.getNom()%> !</h1><%
+		}
+		%>
 		</header>
 		<div id="Cadre">
 			<div id="Search">
@@ -47,18 +45,23 @@
 					<th>Montant</th>
 					<th>Date de publication</th>
 					<th>Proprietaire</th>
-					<th>Selectionner</th>
-					<th>Plus d'informations</th>
+					<th>Etat</th>
+					<th>Ajouter au panier</th>
 				</tr>
 				<% for(Appartement a : (ArrayList<Appartement>) request.getAttribute("apparts")){%>
 						<tr class="ligne" id="ligne <%=a.getNum()%>">
+						<%int vendu = a.getVendu();%>
 							<td><%=a.getNum()%></td>
 							<td><%=a.getAdresse()%></td>
 							<td class="type"><%=a.getTypeAppart()%></td>
 							<td><%=a.getMontantVente()%></td>
 							<td><%=a.getDatePublication()%></td>
 							<td><%=a.getLoginProp()%></td>
-							<td><input type="checkbox" id="cbox + <%=a.getNum()%>" value="panier"></td>
+							<td><%if(vendu==0){
+								%>En vente</td><%
+							}else{%>Vendu</td><%}
+							%>
+							<td><a href="<%=request.getContextPath()+"/ajouterpanier?id=" + a.getNum()%>"><input type="submit" value="Ajouter"></input></a></td>
 						</tr>		
 				<%}%>
 			<table>

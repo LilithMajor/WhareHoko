@@ -86,7 +86,7 @@ public final class RequetesBDD {
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS");
     	ArrayList<Appartement> apparts = new ArrayList<Appartement>();
     	while(result.next()) {
-    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
+    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6),result.getInt(7)));
     	}
     	return apparts;
     }
@@ -105,10 +105,6 @@ public final class RequetesBDD {
         String type = getValeurChamp( request, "type" );
         String prix = getValeurChamp(request, "prix");
         String proprio = attribute.getLogin();
-        System.out.println(type);
-        System.out.println(adresse);
-        System.out.println(prix);
-        System.out.println(proprio);
     	java.util.Date d = new java.util.Date();
     	DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
     	String df=f.format(d);
@@ -121,25 +117,26 @@ public final class RequetesBDD {
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp='"+attribute.getLogin()+"'");
     	ArrayList<Appartement> apparts = new ArrayList();
     	while(result.next()) {
-    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
+    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6),result.getInt(7)));
     	}
     	return apparts;
 	}
 	
-	public ArrayList<Appartement> getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException {
+	public Appartement getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException {
     	Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.Numero="+attribute);
-    	ArrayList<Appartement> apparts = new ArrayList();
+    	Appartement appart = new Appartement();
     	while(result.next()) {
-    		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6)));
+    		appart = new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6),result.getInt(7));
     	}
-    	return apparts;
+    	return appart;
 	}
 
 
-	public int setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws SQLException {
+	public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws SQLException {
 		Statement statement = connect.createStatement();
-    	int result = statement.executeUpdate("UPDATE APPARTEMENTS SET montantVente="+prix+" WHERE Numero="+attribute);
-    	return result;
+		System.out.println(prix);
+    	statement.executeUpdate("UPDATE APPARTEMENTS SET montantVente="+prix+", vendu='1' WHERE Numero="+attribute);
+    	connect.commit();
 	}
 }

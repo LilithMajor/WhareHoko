@@ -9,17 +9,19 @@ public class Appartement {
 	private int montantVente;
 	private Date DatePublication;
 	private String loginProp;
+	private int vendu;
 	
 	public Appartement() {
 	}
 	
-	public Appartement(int num, String typeAppart, String adresse, int montantVente, Date DatePublication, String loginProp) {
+	public Appartement(int num, String typeAppart, String adresse, int montantVente, Date DatePublication, String loginProp, int vendu) {
 		this.num = num;
 		this.typeAppart = typeAppart;
 		this.adresse = adresse;
 		this.montantVente = montantVente;
 		this.DatePublication = DatePublication;
 		this.loginProp = loginProp;
+		this.vendu = vendu;
 	}
 	
 	public int getNum() {
@@ -58,6 +60,11 @@ public class Appartement {
 	public void setLoginProp(String loginProp) {
 		this.loginProp = loginProp;
 	}
-	
+	public int getVendu() {
+		return vendu;
+	}
+	public void setVendu(int vendu) {
+		this.vendu = vendu;
+	}
 
 }

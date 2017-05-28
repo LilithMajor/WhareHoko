@@ -42,11 +42,11 @@ public class Database {
 		 return db.getAppartByProp(request, attribute);
 	 }
 	 
-	 public ArrayList<Appartement> getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException{
+	 public Appartement getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException{
 		 return db.getAppartById(request, attribute);
 	 }
 	 
-	 public int setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws ClassNotFoundException, SQLException{
-		 return db.setMontantVenteAppart(request, attribute, prix);
+	 public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws ClassNotFoundException, SQLException{
+		 db.setMontantVenteAppart(request, attribute, prix);
 	 }
 }
