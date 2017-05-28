@@ -2,12 +2,10 @@ package database;
 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,8 +38,6 @@ public final class RequetesBDD {
     public Proprietaire connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
-        System.out.println(login);
-        System.out.println(motDePasse);
         Proprietaire prop = new Proprietaire();
         Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM PROPRIETAIRES WHERE login='"+login+"' AND Mdp='"+motDePasse+"'");
@@ -115,7 +111,7 @@ public final class RequetesBDD {
 	public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
     	Statement statement = connect.createStatement();
     	ResultSet result = statement.executeQuery("SELECT * FROM APPARTEMENTS WHERE APPARTEMENTS.LoginProp='"+attribute.getLogin()+"'");
-    	ArrayList<Appartement> apparts = new ArrayList();
+    	ArrayList<Appartement> apparts = new ArrayList<Appartement>();
     	while(result.next()) {
     		apparts.add(new Appartement(result.getInt(1),result.getString(2),result.getString(3),result.getInt(4),result.getDate(5),result.getString(6),result.getInt(7)));
     	}

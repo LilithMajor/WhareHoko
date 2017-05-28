@@ -17,7 +17,8 @@ public class afficherPanier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 	        HttpSession session = request.getSession(true);
-	        ArrayList<Appartement> apparts = (ArrayList<Appartement>) request.getAttribute("panier");
+	        @SuppressWarnings("unchecked")
+			ArrayList<Appartement> apparts = (ArrayList<Appartement>) session.getAttribute("panier");
 	        request.setAttribute("panier", apparts);
 		    this.getServletContext().getRequestDispatcher("/WEB-INF/afficherPanier.jsp").forward( request, response );
 	    }

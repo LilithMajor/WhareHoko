@@ -22,7 +22,8 @@ public class AjouterPanier extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 		Database db = Database.getDatabase();
 		 HttpSession session = request.getSession(true);
-		 ArrayList<Appartement> panier = (ArrayList<Appartement>) session.getAttribute("panier");
+		 @SuppressWarnings("unchecked")
+		ArrayList<Appartement> panier = (ArrayList<Appartement>) session.getAttribute("panier");
 		 Proprietaire prop = (Proprietaire) session.getAttribute("sessionUtilisateur");
 		 Appartement appart = new Appartement();
 		 String id = request.getParameter("id");
