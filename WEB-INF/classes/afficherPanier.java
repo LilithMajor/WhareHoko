@@ -18,8 +18,11 @@ public class afficherPanier extends HttpServlet {
 	 public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
 	        HttpSession session = request.getSession(true);
 	        @SuppressWarnings("unchecked")
-			ArrayList<Appartement> apparts = (ArrayList<Appartement>) session.getAttribute("panier");
-	        request.setAttribute("panier", apparts);
+			ArrayList<Appartement> panier = (ArrayList<Appartement>) session.getAttribute("panier");
+			 if(panier == null) {
+				 panier = new ArrayList<Appartement>();
+			 }
+	        request.setAttribute("panier", panier);
 		    this.getServletContext().getRequestDispatcher("/WEB-INF/afficherPanier.jsp").forward( request, response );
 	    }
 }

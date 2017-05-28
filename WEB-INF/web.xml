@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <web-app> 
-
+	<listener> 
+			<listener-class> 
+				MyServletContextListener 
+			</listener-class> 
+	</listener> 
+	
 	<welcome-file-list>
 		<welcome-file>index</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
