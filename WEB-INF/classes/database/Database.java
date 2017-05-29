@@ -23,40 +23,10 @@ public class Database {
 			INSTANCE = new Database();
 		return INSTANCE;
 	}
-<<<<<<< HEAD
 	
-	 public Proprietaire connecterUtilisateur( HttpServletRequest request ) throws ClassNotFoundException, SQLException {
-		 return db.connecterUtilisateur(request);
-	 }
-	 
-	 public Proprietaire enregistrerUtilisateur(HttpServletRequest request)throws ClassNotFoundException, SQLException {
-		 return db.enregistrerUtilisateur(request);
-	 }
-	 
-	 public ArrayList<Appartement> getAllAppartements(HttpServletRequest request)throws ClassNotFoundException, SQLException{
-		 return db.getAllAppartements(request);
-	 }
-	 
-	 public void addAppart(HttpServletRequest request, Proprietaire attribute) throws SQLException, ClassNotFoundException {
-		 db.addAppart(request, attribute);
-	 }
-	 
-	 public ArrayList<Appartement> getAppartByProp(HttpServletRequest request, Proprietaire attribute) throws ClassNotFoundException, SQLException {
-		 return db.getAppartByProp(request, attribute);
-	 }
-	 
-	 public Appartement getAppartById(HttpServletRequest request, String attribute) throws ClassNotFoundException, SQLException{
-		 return db.getAppartById(request, attribute);
-	 }
-	 
-	 public void setMontantVenteAppart(HttpServletRequest request, String attribute, String prix) throws ClassNotFoundException, SQLException{
-		 db.setMontantVenteAppart(request, attribute, prix);
-	 }
-	 
 	 public ArrayList<String> deleteOldAppart() throws ClassNotFoundException, SQLException{
 		return db.deleteOldAppart();
 	 }
-=======
 
 	public Proprietaire connecterUtilisateur( HttpServletRequest request ) throws DatabaseException, ClassNotFoundException {
 		try {
@@ -129,5 +99,4 @@ public class Database {
 			throw new DatabaseException();
 		}
 	}
->>>>>>> 8bf530517bdc84ca9549adeb7448f22adefb0c8c
 }

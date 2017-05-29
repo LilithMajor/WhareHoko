@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Alexb/Documents/projetWebJava/javax.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alexb/Documents/projetWebJava/apache-tomcat-8.5.15/lib/activation-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alexb/Documents/projetWebJava/apache-tomcat-8.5.15/lib/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alexb/Documents/projetWebJava/apache-tomcat-8.5.15/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Asus/Desktop/travail/AppWeb/javax.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Asus/Desktop/travail/AppWeb/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Asus/Desktop/travail/AppWeb/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

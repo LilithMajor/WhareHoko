@@ -162,6 +162,5 @@ public final class RequetesBDD {
 	public void supprimerAppart(HttpServletRequest request, String id) throws SQLException {
 		Statement statement = connect.createStatement();
     	statement.executeUpdate("DELETE FROM APPARTEMENTS WHERE Numero="+id);
-    	connect.commit();
 	}
 }
